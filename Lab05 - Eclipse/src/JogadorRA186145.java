@@ -10,6 +10,21 @@ public class JogadorRA186145 extends Jogador {
 	private ArrayList<CartaLacaio> lacaios;
 	private ArrayList<CartaLacaio> lacaiosOponente;
 	
+	public ArrayList<CartaLacaio> getLacaios () {
+		return lacaios;
+	}
+	
+	public ArrayList<CartaLacaio> getLacaiosOponente() {
+		return lacaiosOponente;
+	}
+	
+	public void setLacaios(ArrayList<CartaLacaio> lacaios) {
+		this.lacaios = lacaios;
+	}
+	
+	public void setLacaiosOponente (ArrayList<CartaLacaio> lacaiosOponente) {
+		this.lacaiosOponente = lacaiosOponente;
+	}
 	/**
 	  * O método construtor do JogadorAleatorio.
 	  * 
@@ -60,18 +75,56 @@ public class JogadorRA186145 extends Jogador {
 		ArrayList<Jogada> minhasJogadas = new ArrayList<Jogada>();
 		
 		// O laço abaixo cria jogas de baixar lacaios da mão para a mesa se houver mana disponível.
+		boolean usedMagia = false;
+		
 		for(int i = 0; i < mao.size(); i++){
 			Carta card = mao.get(i);
-			if(card instanceof CartaLacaio && card.getMana() <= minhaMana){
+			if (card instanceof CartaMagia && card.getMana() <= minhaMana && !usedMagia) {
+				CartaMagia cartaMagia = (CartaMagia) card;
+				Jogada lac;
+				switch (cartaMagia.getMagiaTipo()) {
+					case BUFF:
+						if (lacaios.size() != 0) {
+							lac = new Jogada(TipoJogada.MAGIA, card, lacaios.get(0));
+							usedMagia = true;
+							minhasJogadas.add(lac);
+							minhaMana -= card.getMana();
+							mao.remove(i);
+							i--;
+						}
+						break;
+	
+					default:
+						lac = new Jogada(TipoJogada.MAGIA, card, null);
+						usedMagia = true;
+						minhasJogadas.add(lac);
+						minhaMana -= card.getMana();
+						mao.remove(i);
+						i--;
+						break;
+				}
+
+			}
+		}
+		
+		boolean usedLacaio = false;
+		
+		for(int i = 0; i < mao.size(); i++) {
+			Carta card = mao.get(i);
+			if (card instanceof CartaLacaio && card.getMana() <= minhaMana && !usedLacaio) {
 				Jogada lac = new Jogada(TipoJogada.LACAIO, card, null);
+				usedLacaio = true;
 				minhasJogadas.add(lac);
 				minhaMana -= card.getMana();
-				System.out.println("Jogada: Decidi uma jogada de baixar o lacaio: "+ card);
 				mao.remove(i);
 				i--;
 			}
 		}
-		
+			
+		for (Carta currentLacaio : lacaios) {
+			Jogada lac = new Jogada(TipoJogada.ATAQUE, currentLacaio, null);
+			minhasJogadas.add(lac);
+		}
 		
 		return minhasJogadas;
 	}
