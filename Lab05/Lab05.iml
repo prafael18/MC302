@@ -7,10 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Downloads/Motor-T1-2017s1-V1/bin" />
+          <root url="file://$MODULE_DIR$/Motor-T1-2017s1-V1/bin" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
