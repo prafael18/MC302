@@ -1,0 +1,22 @@
+Nome: Rafael Figueiredo Prudencio                             RA:186145
+Usando o JogadorRAxxxxxx como o jogador A e o aleatório como o B, obteve-se uma taxa de 59,18% de vitórias:
+  JogA wins: 5918
+  JogB wins: 4082
+Para otimizar o JogadorRAxxxxxx, decompomos o método processarTurno() em duas etapas: a)selecionar as cartas que serão jogadas na rodada e b)escolher o alvo dessas cartas.
+Para a primeira etapa, avaliou-se que a CartaMagia com TipoMagia.AREA era uma das mais fortes do jogo e, por isso, priorizou-se sua escolha sobre as demais.
+Em seguida, priorizou-se em ordem, baixar lacaios para mesa, usar magia de BUFF, usar magia de ALVO e usar o poder do herói. Não foi implementado nenhum critério para escolha das cartas,
+apenas verifica-se na ordem em que elas aparecem na "mao" do jogador se há mana suficiente para usá-la.
+      Para a segunda etapa, avaliou-se qual era a melhor jogada para cada carta. Para as CartaMagia, usou-se os seguintes critérios;
+
+  -AREA: indiferente, toda magia em área é aplicada a todos os membros do oponente.
+  -ALVO: caso o herói do oponente esteja em um estado crítico de vida (determinado pelo método isKillingBlow()), a carta será usada no herói. Caso contrário, será avaliado se há um lacaio oponente cujo ataque é maior que o dano da CartaMagia e que a carta magia será capaz de matar em uma única rodada. Se isso for verdadeiro, deve-se atacar o lacaio oponente que encaixa-se nesse perfil, caso contrário, o ataque deve ser direcionado ao herói.
+  -BUFF: a carta buff é sempre usado no lacaio da mesa que tiver o maior ataque.
+
+Para as cartas lacaio, o critério é semelhante ao utilizado na carta magia de dano em alvo. Caso o herói do oponente esteja em um estado crítico de vida, todos os ataques sao direcionados ao herói do oponente. Caso contrário, avalia-se se há um lacaio inimigo cujo ataque é maior que o do aliado e que o ataque do aliado seja capaz de matar o do inimigo em uma jogada. Se houver um lacaio inimigo que se enquadre nesse perfil, deve-se atacá-lo, caso contrário, deve-se atacar o herói inimigo.
+Finalmente, o poder é sempre aplicado ao herói, quando após uma rodada, não há mais cartas para baixar e restaram dois ou mais pontos de mana.
+Usando o algoritmo acima, obteve-se uma melhora significativa de 22,6% em relação ao JogadorRA186145, verificado na performance do JogadorRA186145New contra o JogadorAleatório:
+  JogA (JogadorRA186145New) wins: 8178
+  JogB (JogadorAleatorio) wins: 1822
+  Em seguida, colocamos o JogadorRA186145New para batalhar o JogadorRA186145, onde obteve-se uma taxa de vitórias positiva (maior que 50%), verificando a validade das otimizações feitas em cima do JogadorRA186145.
+  JogA (JogadorRA186145New) wins: 6540
+  JogB (JogadorRA186145) wins: 3460

@@ -147,7 +147,7 @@ public class Main {
 		// Inicializa os Jogadores devidamente (com as cartas da mão e o argumento 'primeiro').
 		//JogadorAleatorioNewbie jogA = new JogadorAleatorioNewbie(mao1clone, true);
 		//JogadorAleatorioFace jogB = new JogadorAleatorioFace(mao2clone, false);
-		JogadorRA186145New jogA = new JogadorRA186145New(mao1clone, true);
+		JogadorRA186145 jogA = new JogadorRA186145(mao1clone, true);
 		JogadorAleatorio jogB = new JogadorAleatorio(mao2clone, false);
 		
 		// O Motor é construído
@@ -210,7 +210,7 @@ public class Main {
 				ArrayList<Carta> mao2clone = (ArrayList<Carta>) UnoptimizedDeepCopy.copy(Mao2);
 				
 				// Inicializa os Jogadores devidamente (com as cartas da mão e o argumento 'primeiro').
-				JogadorRA186145New jogA = new JogadorRA186145New(mao1clone, moeda);
+				JogadorRA186145 jogA = new JogadorRA186145(mao1clone, moeda);
 				JogadorAleatorio jogB = new JogadorAleatorio(mao2clone, !moeda);
 				
 				// O Motor é construído

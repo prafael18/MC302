@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bin1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../modules/Motor-V2/bin" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../../modules/Motor-V2/doc" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
