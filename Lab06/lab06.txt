@@ -1,0 +1,39 @@
+Nome:Rafael Figueiredo Prudencio 				RA:186145
+
+Tarefa 2:
+Respondendo aos itens 1-4, obteve-se a seguinte saída no terminal:
+
+A operação "get" com ArrayList demorou: 2ms
+A operação "get" com LinkedList demorou: 90ms
+A operação "contains" com ArrayList demorou: 196ms
+A operação "contains" com LinkedList demorou: 311ms
+
+Para o item 5, fizemos um simples teste de instanciar uma carta e tentar adiconá-la duas vezes a um ArrayList, Vector e um LinkedList de cartas. A carta foi instanciada com a seguinte declaração:
+
+Carta carta = new Carta (new UUID(1, 0), "Carta Repetida", 2);
+
+Para as três coleções, obteve-se a mesma saída ao imprimí-la:
+
+[Carta Repetida (ID: 00000000-0000-0001-0000-000000000000)
+Custo de Mana = 2
+, Carta Repetida (ID: 00000000-0000-0001-0000-000000000000)
+Custo de Mana = 2
+]
+
+Portanto, conclui-se que uma lista aceita cartas repetidas. 
+
+Tarefa 3:
+
+Respondendo aos itens 1 e 2, obteve-se a seguinte saída no terminal:
+
+A operação "contains" com HashSet demorou: 3ms
+A operação "contains" com TreeSet demorou: 14ms
+
+Para o item 3, usou-se o mesmo procedimento descrito para a tarefa 2 e obteve-se a mesma saída tanto para o HashSet como o TreeSet:
+
+[Carta Repetida (ID: 00000000-0000-0001-0000-000000000000)
+Custo de Mana = 2
+]
+
+Assim, verificou-se que não é possível adicionar elementos repetidos aos conjuntos HashSet e TreeSet (pois ambos implementam a interface Set cuja implementação garante a singularidade dos elementos). É interessante observar que ambas as coleções não emitem warnings ao tentar adicionar um elemento repetido, o que torna-as muito útil na hora remover elementos repetidos de uma lista.
+
